@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Gemini</title>
+</head>
+<body>
+  <h1>Probar Gemini API</h1>
+  <textarea id="msg" rows="5" cols="40" placeholder="Escribe algo..."></textarea><br>
+  <button onclick="sendMessage()">Enviar</button>
+  <pre id="reply"></pre>
+
+  <script>
+    async function sendMessage() {
+      const msg = document.getElementById("msg").value;
+      try {
+        const res = await fetch("/.netlify/functions/gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
+
+        const data = await res.json();
+        document.getElementById("reply").textContent = data.reply || "Sin respuesta";
+      } catch (err) {
+        document.getElementById("reply").textContent = "Error: " + err;
+      }
+    }
+  </script>
+</body>
+</html>
