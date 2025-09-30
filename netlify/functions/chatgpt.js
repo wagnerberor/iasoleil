@@ -21,7 +21,7 @@ export async function handler(event, context) {
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`, // tu clave en variables de entorno
       },
       body: JSON.stringify({
-        model: "gpt-4o", // o el modelo que tengas disponible
+        model: "gpt-3", // o el modelo que tengas disponible
         messages: [{ role: "user", content: userMsg }],
         temperature: 0.7,
       }),
