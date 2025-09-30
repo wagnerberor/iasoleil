@@ -49,6 +49,7 @@ export async function handler(event, context) {
   });
 
   const data = await response.json();
+  console.log("Respuesta OpenAI:", data); // 👈 log para depuración
   const reply = data.choices?.[0]?.message?.content || "No hay respuesta";
 
   return {
